@@ -179,29 +179,81 @@ window.$ql = (function() {
 
  		join: function(){
  			var args = arguments;
-
+ 			var options;
  			if(args.length == 3){
-	 			var options = {
+	 			options = {
+	 				clause: 'LEFT',
 	 				leftProperty: args[0],
 	 				rightProperty: args[1],
 	 				array: args[2]
+	 			};
+	 		}
+	 		else if(args.length == 4){
+	 			options = {
+	 				clause: args[0].toUpperCase().trim(),
+	 				leftProperty: args[1],
+	 				rightProperty: args[2],
+	 				array: args[3]
 	 			};
 	 		}
 	 		else {
 	 			throw "$ql.join: Incorrect number of arguments...";
 	 		}
 
+	 		if(options.array instanceof $QL)
+	 			options.array = options.array._array;
+	 		else if(options.array.jquery)
+	 			options.array = options.array.toArray();
+
+	 		var isLeftJoin = options.clause.includes('LEFT');
+	 		var isInnerJoin = options.clause.includes('INNER');
+
 	 		this._array.forEach(function(left){
 	 			var rightMatches = options.array.filter(function(right){
 	 				return getObjectValue(getPropertyFromDotNotation(options.leftProperty, left)) == getObjectValue(getPropertyFromDotNotation(options.rightProperty, right));
 	 			});
 
-	 			left.$joined = rightMatches;
+	 			if(isLeftJoin){
+	 				left.$joined = rightMatches;
+	 			}
+	 			else if(isInnerJoin){
+					if(rightMatches.length === 0){
+	 					left.$destroy= true;
+	 				}
+	 				else{
+	 					left.$joined = rightMatches;
+	 				}
+	 			}
 	 		});
 
+	 		//If inner join, we remove all items that had no joins.
+	 		if(isInnerJoin){
+	 			this._array = this._array.filter(function(item){ return !item.$destroy; });
+	 		}
+
 	 		return this;
+ 		},
+
+ 		explode: function(){
+ 			var args = arguments;
+
+ 			if(args.length !== 0){
+ 				throw "$ql.explode: Doesn't take any arguments...";
+ 			}
+
+ 			var explodedArray = [];
+ 			this._array.forEach(function(left){
+ 				if(left.$joined && left.$joined.length){
+ 					left.$joined.forEach(function(right){
+ 						explodedArray.push({left: left, right: right});
+ 					});
+ 				}
+ 			});
+
+ 			this._array = explodedArray;
+ 			return this;
  		}
- 	};  
+ 	};
 
  	/**
  	 * Is the object supplied a Function?
