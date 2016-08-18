@@ -22,3 +22,12 @@ To Do:
 + Min
 + Max
 + Avg
+
+## How To Use
+
+|  Method | Usage
+|---|---|
+| Where | TODO  |
+| Select  | TODO  |
+| OrderBy  |  TODO |
+| Select | TODO  |
