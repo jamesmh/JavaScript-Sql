@@ -3,6 +3,12 @@ JavaScript library that provides SQL like syntax to essentially perform SQL quer
 
 This includes things like performing Sql Left and Inner joins. Also, library supports exploding joins just like databases normally produce join results.
 
+Done:
++ Select
++ Where
++ OrderBy
++ Join (plus explode())
+
 To Do: 
 + Exists
 + Distinct
