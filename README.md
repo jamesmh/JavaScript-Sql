@@ -5,5 +5,14 @@ This includes things like performing Sql Left and Inner joins. Also, library sup
 
 To Do: 
 + Exists
++ Distinct
++ Group BY
++ Having
++ Union
++ Minus
++ Except
++ Count
 + Sum
-+ ?
++ Min
++ Max
++ Avg
