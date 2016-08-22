@@ -1,9 +1,9 @@
 # JavaScript-Sql
 JavaScript library that provides SQL like syntax to semantically / logically perform "queries" on JavaScript arrays.
 
-I realized one day that my preferences for programming frameworks and libraries is based very much so on one metric in particular: semantics. If an api or library is very "semantic", then they are - in general - very easy to use and understand. One of these frameworks - if not THE framework - that really inspired this idea in my own mind, is Laravel.
+I realized one day that the frameworks and libraries I enojy using have a common trait in their public api: semantics. If an api or library is very "semantic", then they are - in general - very easy to use and understand. One of these frameworks - if not THE framework - that really imprinted this concept into my own mind, is [Laravel](https://laravel.com/).
 
-I have occasionally looked for a nice JavaScript library that offers a semantic api and provides "SQL" like functionality. I've see bits and peices of what I would like in other libraries like Underscore, LoDash etc. - but nothing complete.
+That being said, I have occasionally looked for a nice JavaScript library that offers a semantic api to provide "SQL" like functionality. I've see bits and peices of what I would like in other libraries like Underscore, LoDash etc. - but nothing complete. Ya, we have JavaScript map and filter functions....but that's still not semantic enough.
 
 What if I took the simplicity and semantics of a framework like Laravel and created a pseudo SQL JavaScript library?...
 
