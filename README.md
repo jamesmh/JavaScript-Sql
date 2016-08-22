@@ -1,5 +1,4 @@
 # JavaScript-Sql
-JavaScript library that provides SQL like syntax to semantically / logically perform "queries" on JavaScript arrays.
 
 I realized one day that the frameworks and libraries I enojy using have a common trait in their public api: semantics. If an api or library is very "semantic", then they are - in general - very easy to use and understand. One of these frameworks - if not THE framework - that really imprinted this concept into my own mind, is [Laravel](https://laravel.com/).
 
