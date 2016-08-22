@@ -26,8 +26,22 @@ To Do:
 ## How To Use
 
 ### Creating New $QL Object
+Creating a new $QL object is very similar to (as a familiar reference...) creating a new JQuery object. The only different is you must supply a JavaScript array as the constructor parameter. 
+
+```
+var $people = $ql(arrayOfPeople);
+```
+
+Just like JQuery, the returned object is a chainable "$QL" object. We can chain further methods, such as select(), like:
+
+```
+// This would simply return the original array.
+var array = $ql(arrayOfPeople).select();
+```
 
 ### Select
+
+
 
 ### Where
 
