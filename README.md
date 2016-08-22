@@ -9,9 +9,9 @@ What if I took the simplicity and semantics of a framework like Laravel and crea
 
 Here's my attempt.
 
-## How To Use
+# How To Use
 
-### Creating New $QL Object
+## Creating New $QL Object
 Creating a new $QL object is very similar to (as a familiar reference...) creating a new JQuery object. The only difference is you must supply a JavaScript array as the constructor parameter. 
 
 ```
@@ -25,13 +25,13 @@ Just like JQuery, the returned object is a chainable "$QL" object. We can chain 
 var array = $ql(peopleArray).select();
 ```
 
-### Select
+## Select
 
 The select is the equivalent of the JavaScript map() method. In fact, it uses map internally. 
 
 There are two ways to use this method.
 
-#### 1. The Semantic Way
+### 1. The Semantic Way
 One string parameter - which is the property of the objects in the array that will be "mapped".
 This parameter accepts "dot notation", so we can access nested properties.
 
@@ -53,19 +53,21 @@ If the property selected is a function, the select will map based on the result 
 ```
 
 
-#### 2. The "Normal" Way
+### 2. The "Normal" Way
 Supply a function that will be internally supplied to the map() function. Useful for more complex scenarios (the example is not a complex scenario...).
 
 ```
   var firstNames = $ql(peopleArray).select( (person) => person.name.first + ' ' + person.name.last);
 ```
 
-### Where
+## Where
 
-### OrderBy
+## OrderBy
 
-### Join
+## Join
 
+
+# To Do?:
 
 Done:
 + Select
