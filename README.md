@@ -45,7 +45,7 @@ The select is the equivalent of the JavaScript map() method. In fact, it uses ma
 
 There are two ways to use this method.
 
-1. <h4>The Semantic Way</h4>
+#### 1. The Semantic Way
 One string parameter - which is the property of the objects in the array that will be "mapped".
 This parameter accepts "dot notation", so we can access nested properties.
 
@@ -67,7 +67,7 @@ If the property selected is a function, the select will map based on the result 
 ```
 
 
-2. <h4>The JavaScript Way</h4>
+#### 2. The "Normal" Way
 Supply a function that will be internally supplied to the map() function. Useful for more complex scenarios (the example is not a complex scenario...).
 
 ```
