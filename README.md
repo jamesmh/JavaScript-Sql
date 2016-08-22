@@ -1,27 +1,13 @@
 # JavaScript-Sql
 JavaScript library that provides SQL like syntax to semantically / logically perform "queries" on JavaScript arrays.
 
-This includes things like performing Sql Left and Inner joins. Also, library supports exploding joins just like databases normally produce join results.
+I realized one day that my preferences for programming frameworks and libraries is based very much so on one metric in particular: semantics. If an api or library is very "semantic", then they are - in general - very easy to use and understand. One of these frameworks - if not THE framework - that really inspired this idea in my own mind, is Laravel.
 
-Done:
-+ Select
-+ Where
-+ OrderBy
-+ Join (plus explode())
+I have occasionally looked for a nice JavaScript library that offers a semantic api and provides "SQL" like functionality. I've see bits and peices of what I would like in other libraries like Underscore, LoDash etc. - but nothing complete.
 
-To Do: 
-+ Exists
-+ Distinct
-+ Group BY
-+ Having
-+ Union
-+ Minus
-+ Except
-+ Count
-+ Sum
-+ Min
-+ Max
-+ Avg
+What if I took the simplicity and semantics of a framework like Laravel and created a pseudo SQL JavaScript library?...
+
+Here's my attempt.
 
 ## How To Use
 
@@ -80,3 +66,23 @@ Supply a function that will be internally supplied to the map() function. Useful
 
 ### Join
 
+
+Done:
++ Select
++ Where
++ OrderBy
++ Join (plus explode())
+
+To Do: 
++ Exists
++ Distinct
++ Group BY
++ Having
++ Union
++ Minus
++ Except
++ Count
++ Sum
++ Min
++ Max
++ Avg
