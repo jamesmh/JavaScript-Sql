@@ -64,11 +64,41 @@ Supply a function that will be internally supplied to the map() function. Useful
 ```
   var firstNames = $ql(peopleArray).select( (person) => person.name.first + ' ' + person.name.last);
 ```
+## OrderBy
+#### Just Tell It What To Order By:
+Just like the Sql Order By statement, we can just tell the method what property to sort on.
+```
+var people = $ql(peopleArray).orderby("name.first").select();
+```
+
+You can also type of sorting you want- ascending vs. descending. (Leaving out the type of sorting you want will default to an ascending sort.)
+```
+var people = $ql(peopleArray).orderby("DESC", "name.first").select();
+```
+
+As long as the string starts with "asc" or "desc" it will work.
+```
+var people = $ql(peopleArray).orderby("descending", "name.first").select();
+
+var people = $ql(peopleArray).orderby("ascending", "name.first").select();
+
+var people = $ql(peopleArray).orderby("ASCENDING", "name.first").select();
+
+var people = $ql(peopleArray).orderby("ASC", "name.first").select();
+
+// Etc... they all work!
+```
+
+#### Want More Control? 
+Internally, the orderBy() uses the sort() method provided natively on array objects. If you need full control for more complex scenarios, just provide the function to be used by sort().
+```
+var someSortFunctionYouDefined = function(a, b,) { /* sort... */ };
+var people = $ql(peopleArray).orderby(someSortFunctionYouDefined).select();
+```
 
 ## Where
 TODO
-## OrderBy
-TODO
+
 ## Join
 TODO
 
