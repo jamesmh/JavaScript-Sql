@@ -12,20 +12,26 @@ Here's my attempt....
 
 Probably "IE 9 and higher". ES5 functions like map and filter are being used internally, but not ES6.
 
+# Dependencies
+
+None. Just Plain-old JavaScript (ES5).
+
 # How To Use
 
 ## Creating New $QL Object
 Creating a new $QL object is very similar to (as a familiar reference...) creating a new JQuery object. The only difference is you must supply a JavaScript array as the constructor parameter. 
-
 ```
 var $people = $ql(arrayOfPeople);
 ```
 
-Just like JQuery, the returned object is a chainable "$QL" object. We can chain further methods, such as select(), like:
-
+Also, for JQuery support, you can pass in a JQuery object to the constructor. Internally, the constructor will call .toArray().
 ```
-// This would simply return the original array.
-var array = $ql(peopleArray).select();
+var $people = $ql($jqueryPeople);
+```
+
+Just like JQuery, the returned object is a chainable "$QL" object. We can chain further methods, such as select(), like:
+```
+var array = $ql(peopleArray).select().otherMethod(); //etc...
 ```
 
 ## Select
