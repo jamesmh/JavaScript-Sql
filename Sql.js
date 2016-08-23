@@ -106,13 +106,12 @@ window.$ql = (function() {
  						case '>=':
  							return getObjectValue(obj) >= options.value;
  						case (propertyToUpper === 'LIKE' ? options.operator : false):
- 						return getObjectValue(obj).search(options.value);
+ 						return getObjectValue(obj).includes(options.value);
  						default:
  							throw "$ql: Invalid Operator '" + options.operator + "'.";
  					}
  				};
- 			this._array = exec$qlFunction.call(this, ar
- 				###gs, Array.prototype.filter, $qlWhere);
+ 			this._array = exec$qlFunction.call(this, args, Array.prototype.filter, $qlWhere);
  			return this;
  		},
 
