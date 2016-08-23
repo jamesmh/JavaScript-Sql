@@ -122,14 +122,14 @@ var canadaString = $ql(countriesStringArray).where("==", "CA").select();
 * "<=" uses `<=`
 * ">=" uses `>=`
 
-If you want to provide more verbose operators, you can use the following:
+##### If you want to provide more verbose operators, you can use the following:
 * Some form of "equal" or "is" will use `==`
 * Some form of "not" will use `!=`
 * Some form of "less" will use `<`
 * Some form of "greater" will use `>`
 
-You can even use the LIKE clause in your where statements!
-* Some form of "like" will use the string method search() to test the property on the array items.
+##### You can even use the **LIKE** clause in your where statements!
+* Some form of "like" will use the string search() method to test the property on the array items.
 
 #### Full Control?
 Internally, the where() uses the filter() method. You can just supply the function to be used by the filter.
