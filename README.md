@@ -17,10 +17,10 @@ Probably "IE 9 and higher". ES5 functions like map and filter are being used int
 None. Just Plain-old JavaScript (ES5).
 
 # Methods
-## [Select](#Select)
-## [OrderBy](#OrderBy)
-## [Where](#Where)
-## [Join](#Join)
+## [Select](#select-1)
+## [OrderBy](#orderby-1)
+## [Where](#where-1)
+## [Join](#join-1)
 
 # How To Use
 
