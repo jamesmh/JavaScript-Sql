@@ -1,3 +1,10 @@
+/**
+ * Author: James Hickey
+ * GitHub: https://github.com/jamesmh
+ *
+ * Description: JavaScript library that provides SQL like syntax to semantically / logically perform "queries" on JavaScript arrays.
+ */
+
 window.$ql = (function() {
  	/**
  	 * Polyfill for String.prototype.includes().
@@ -10,6 +17,10 @@ window.$ql = (function() {
 
  	/**
  	 * Create a new $QL object that allows chaining additional methods.
+ 	 *
+ 	 * Creating a new $QL object is very similar to (as a familiar reference...) creating a new JQuery object. 
+ 	 * The only difference is you must supply a JavaScript array as the constructor parameter. 
+ 	 * 
  	 * @param  {Array} array 			Some Javascript Array
  	 * @return {SemnaticJs}      		Returns a new $QL object that allows chaining additiona methods.
  	 */
@@ -24,7 +35,8 @@ window.$ql = (function() {
  	var $QL = function(array){
  		if(array.jquery && array.selector){
  			array = array.toArray();
- 		} 		
+ 		}
+
  		this._array = array;
  	};
 
@@ -94,12 +106,13 @@ window.$ql = (function() {
  						case '>=':
  							return getObjectValue(obj) >= options.value;
  						case (propertyToUpper === 'LIKE' ? options.operator : false):
- 						return getObjectValue(obj).search();
+ 						return getObjectValue(obj).search(options.value);
  						default:
  							throw "$ql: Invalid Operator '" + options.operator + "'.";
  					}
  				};
- 			this._array = exec$qlFunction.call(this, args, Array.prototype.filter, $qlWhere);
+ 			this._array = exec$qlFunction.call(this, ar
+ 				###gs, Array.prototype.filter, $qlWhere);
  			return this;
  		},
 
@@ -182,18 +195,18 @@ window.$ql = (function() {
  			var options;
  			if(args.length == 3){
 	 			options = {
+	 				array: args[0],
 	 				clause: 'LEFT',
-	 				leftProperty: args[0],
-	 				rightProperty: args[1],
-	 				array: args[2]
+	 				leftProperty: args[1],
+	 				rightProperty: args[2]	 				
 	 			};
 	 		}
 	 		else if(args.length == 4){
 	 			options = {
-	 				clause: args[0].toUpperCase().trim(),
-	 				leftProperty: args[1],
-	 				rightProperty: args[2],
-	 				array: args[3]
+	 				array: args[0],
+	 				clause: args[1].toUpperCase().trim(),
+	 				leftProperty: args[2],
+	 				rightProperty: args[3]	 				
 	 			};
 	 		}
 	 		else {
@@ -218,7 +231,7 @@ window.$ql = (function() {
 	 			}
 	 			else if(isInnerJoin){
 					if(rightMatches.length === 0){
-	 					left.$destroy= true;
+	 					left.$destroy = true;
 	 				}
 	 				else{
 	 					left.$joined = rightMatches;
