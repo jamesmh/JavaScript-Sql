@@ -31,7 +31,7 @@ var $people = $ql($jqueryPeople);
 
 Just like JQuery, the returned object is a chainable "$QL" object. We can chain further methods, such as select(), like:
 ```
-var array = $ql(peopleArray).select().otherMethod(); //etc...
+var array = $ql(peopleArray).select();
 ```
 
 ## Select
