@@ -66,25 +66,25 @@ Supply a function that will be internally supplied to the map() function. Useful
 Order By will sort your array. The ways to use it are:
 
 #### Just Tell It What To Order By:
-Just like the Sql Order By statement, we can just tell the method what property to sort on.
+Just like the SQL Order By statement, we can just tell the method what property to sort on.
 ```
-var people = $ql(peopleArray).orderby("name.first").select();
+var people = $ql(peopleArray).orderBy("name.first").select();
 ```
 
 You can also type of sorting you want- ascending vs. descending. (Leaving out the type of sorting you want will default to an ascending sort.)
 ```
-var people = $ql(peopleArray).orderby("DESC", "name.first").select();
+var people = $ql(peopleArray).orderBy("DESC", "name.first").select();
 ```
 
 As long as the string starts with "asc" or "desc" it will work.
 ```
-var people = $ql(peopleArray).orderby("descending", "name.first").select();
+var people = $ql(peopleArray).orderBy("descending", "name.first").select();
 
-var people = $ql(peopleArray).orderby("ascending", "name.first").select();
+var people = $ql(peopleArray).orderBy("ascending", "name.first").select();
 
-var people = $ql(peopleArray).orderby("ASCENDING", "name.first").select();
+var people = $ql(peopleArray).orderBy("ASCENDING", "name.first").select();
 
-var people = $ql(peopleArray).orderby("ASC", "name.first").select();
+var people = $ql(peopleArray).orderBy("ASC", "name.first").select();
 
 // Etc... they all work!
 ```
