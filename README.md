@@ -36,12 +36,9 @@ var array = $ql(peopleArray).select();
 
 ## Select
 
-The select is the equivalent of the JavaScript map() method. In fact, it uses map internally. 
+The select is the equivalent of the JavaScript map() method. In fact, it uses map internally. The ways to use it are:
 
-There are two ways to use this method.
-
-### 1. The Semantic Way
-### Select On A Specific Property:
+#### Select On A Specific Property:
 Use "dot notation" and tell the select exactly which property you want.
 ```
   var firstNames = $ql(peopleArray).select('name.first');
@@ -65,6 +62,9 @@ Supply a function that will be internally supplied to the map() function. Useful
   var firstNames = $ql(peopleArray).select( (person) => person.name.first + ' ' + person.name.last);
 ```
 ## OrderBy
+
+Order By will sort your array. The ways to use it are:
+
 #### Just Tell It What To Order By:
 Just like the Sql Order By statement, we can just tell the method what property to sort on.
 ```
