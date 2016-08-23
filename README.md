@@ -39,7 +39,7 @@ var array = $ql(peopleArray).select();
 The select is the equivalent of the JavaScript map() method. In fact, it uses map internally. The ways to use it are:
 
 #### Select On A Specific Property:
-Use "dot notation" and tell the select exactly which property you want.
+Use "dot notation" and tell the select() exactly which property you want.
 ```
   var firstNames = $ql(peopleArray).select('name.first');
 ```
@@ -51,7 +51,7 @@ If the property you want to select on is a function (without any parameters), th
 ```
 
 #### Just Return Full Objects:
-Just call select() with no parameters to get the array with full objects.
+Call select() with no parameters to get the array with full objects.
 ```
   var array = $ql(peopleArray).select();
 ```
