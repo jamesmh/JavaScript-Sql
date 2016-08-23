@@ -129,7 +129,7 @@ var canadaString = $ql(countriesStringArray).where("==", "CA").select();
 * Some form of "greater" will use `>`
 
 ##### You can even use the **LIKE** clause in your where statements!
-* Some form of "like" will use the string search() method to test the property on the array items.
+* Some form of "like" will check if the value to test against is found in the property as a substring (usually only used with strings). This is case sensitive.
 
 #### Full Control?
 Internally, the where() uses the filter() method. You can just supply the function to be used by the filter.
