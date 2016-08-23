@@ -16,6 +16,12 @@ Probably "IE 9 and higher". ES5 functions like map and filter are being used int
 
 None. Just Plain-old JavaScript (ES5).
 
+# Methods
+## [Select](#Select)
+## [OrderBy](#OrderBy)
+## [Where](#Where)
+## [Join](#Join)
+
 # How To Use
 
 ## Creating New $QL Object
