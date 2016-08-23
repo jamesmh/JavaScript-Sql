@@ -1,8 +1,8 @@
 # JavaScript-Sql
 
-One day, I realized that the frameworks and libraries I enjoy using have a common trait in their public api: semantics. If an api or library is very "semantic", then they are - in general - very easy to use and understand. One of these frameworks - if not THE framework - that really imprinted this concept into my own mind, is [Laravel](https://laravel.com/).
+One day, I realized that the frameworks and libraries I enjoy using have a common trait in their public api: semantics. If an api or library is very "semantic", then they are - in general - very easy to use and understand. One of these frameworks - if not THE framework - that shines in this way is [Laravel](https://laravel.com/).
 
-That being said, I have occasionally looked for a nice JavaScript library that offers a semantic api to provide "SQL" like functionality. I've see bits and pieces of what I would like in other libraries like Underscore, LoDash etc. - but nothing complete. Ya, we have JavaScript map and filter functions....but that's still not semantic enough.
+That being said, I have occasionally looked for a nice JavaScript library that offers a semantic api to provide "SQL" like functionality. I've see bits and pieces of what I would like in other libraries like Underscore, LoDash etc. - but nothing complete. Yes, we have JavaScript map and filter functions....but that's still not semantic enough.
 
 What if I took the simplicity and semantics of a framework like Laravel and created a pseudo SQL JavaScript library?...
 
@@ -60,11 +60,11 @@ Supply a function that will be internally supplied to the map() function. Useful
 ```
 
 ## Where
-
+TODO
 ## OrderBy
-
+TODO
 ## Join
-
+TODO
 
 # To Do?:
 
