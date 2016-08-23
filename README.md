@@ -93,11 +93,49 @@ var people = $ql(peopleArray).orderBy("ASC", "name.first").select();
 Internally, the orderBy() uses the sort() method provided natively on array objects. If you need full control for more complex scenarios, just provide the function to be used by sort().
 ```
 var someSortFunctionYouDefined = function(a, b,) { /* sort... */ };
-var people = $ql(peopleArray).orderby(someSortFunctionYouDefined).select();
+
+var people = $ql(peopleArray).orderBy(someSortFunctionYouDefined).select();
 ```
 
 ## Where
-TODO
+The where() is a filter on your array. It will include or exclude items based on a certain condition. The ways to use it are:
+
+#### Full Semantic Where!
+This code would perform the where just like you think it would...it's so easy to understand because of the semantics - I don't need to explain!
+```
+var canadians = $ql(peopleArray).where("address.country.code", "==", "CA").select();
+```
+
+However, there are things to know.
+##### Omitting the property to match on just uses the full object when testing
+```
+var canadaString = $ql(countriesStringArray).where("==", "CA").select();
+```
+
+##### The available "operators":
+* "=" and "==" use `==`
+* "===" uses `===`
+* "!=" uses `!=`
+* "!==" uses  `!==`
+* "<" uses `<`
+* ">" uses `>`
+* "<=" uses `<=`
+* ">=" uses `>=`
+
+If you want to provide more verbose operators, you can use the following:
+* Some form of "equal" or "is" will use `==`
+* Some form of "not" will use `!=`
+* Some form of "less" will use `<`
+* Some form of "greater" will use `>`
+
+You can even use the LIKE clause in your where statements!
+* Some form of "like" will use the string method search() to test the property on the array items.
+
+#### Full Control?
+Internally, the where() uses the filter() method. You can just supply the function to be used by the filter.
+```
+var canadians = $ql(peopleArray).where( person => person.country.code === 'CA' ).select();
+```
 
 ## Join
 TODO
