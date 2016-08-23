@@ -6,7 +6,11 @@ That being said, I have occasionally looked for a nice JavaScript library that o
 
 What if I took the simplicity and semantics of a framework like Laravel and created a pseudo SQL JavaScript library?...
 
-Here's my attempt.
+Here's my attempt....
+
+# Compatibility
+
+Probably "IE 9 and higher". ES5 functions like map and filter are being used internally, but not ES6.
 
 # How To Use
 
@@ -31,30 +35,26 @@ The select is the equivalent of the JavaScript map() method. In fact, it uses ma
 There are two ways to use this method.
 
 ### 1. The Semantic Way
-One string parameter - which is the property of the objects in the array that will be "mapped".
-This parameter accepts "dot notation", so we can access nested properties.
-
+### Select On A Specific Property:
+Use "dot notation" and tell the select exactly which property you want.
 ```
   var firstNames = $ql(peopleArray).select('name.first');
 ```
 
-If parameter is omitted, the select method will return the stored array with full objects. (Useful when we need to process the array using aggregates etc. and return full objects)
-
-```
-  var array = $ql(peopleArray).select();
-```
-
-If the property selected is a function, the select will map based on the result of that function (must be parameter-less).
-
+If the property you want to select on is a function (without any parameters), the select will just call that function and use the result.
 ```
   // name.fullname is a function that returns the person's full name...
   var fullNames = $ql(peopleArray).select('name.fullname');
 ```
 
+#### Just Return Full Objects:
+Just call select() with no parameters to get the array with full objects.
+```
+  var array = $ql(peopleArray).select();
+```
 
-### 2. The "Normal" Way
+#### Full Control:
 Supply a function that will be internally supplied to the map() function. Useful for more complex scenarios (the example is not a complex scenario...).
-
 ```
   var firstNames = $ql(peopleArray).select( (person) => person.name.first + ' ' + person.name.last);
 ```
