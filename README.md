@@ -172,16 +172,16 @@ var firstPersonsCountries = peopleWithCountries[0].$joined;
 #### Exploding Join Results
 Normally, when you perform a join in SQL, you get one row per result. So, if a person is joined with - let's say - other people having the same last name, you might get multiple joins and mutliple rows. Can we do this with $QL? Yes!
 
-With multiple results for one "record" or item in the $QL array, the $joined property will just be an arrray with mutliple entries in it. You can call the explode() method after a join to "explode" the results into "one record" per match.
+With multiple results for one "record" or item in the $QL array, the $joined property will just be an arrray with mutliple entries in it. You can call the explode() method after a join to "explode" the results into "one record" per match. 
 ```
 var explodedPeople = $ql(peopleArray).join(countriesArray, "address.country", "name").explode().select();
 
 // "explodedPeople" now looks like { left: [personObject], right: [countryObject] }
 ```
 
-The objects returned by the select() will now return an array of objects having two poroperties: "left" and "right". Left is the item from the original / $QL array and right is a match from the joined array.
+The objects returned by the select() will now return an array of objects having two properties: "left" and "right". Left is the item from the original / $QL array and right is a match from the joined array.
 
-Note that the left item's property $joined is set to undefined after exploding.
+Note: the left item's property $joined is set to undefined after exploding.
 
 
 # To Do?:
