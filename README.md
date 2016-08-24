@@ -165,7 +165,8 @@ Once you perform a join, each item in the original array will have a new propert
 var peopleWithCountries = $ql(peopleArray).join(countriesArray, "address.country", "name").select();
 var firstPersonsCountries = peopleWithCountries[0].$joined;
 
-// "firstPersonsCountries" is now the array of all the countries from the "countriesArray" that joined on the first person!
+// "firstPersonsCountries" is now the array of all the countries 
+// from the "countriesArray" that joined on the first person!
 ```
 
 #### Exploding Join Results
