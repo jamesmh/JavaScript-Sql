@@ -194,16 +194,16 @@ window.$ql = (function() {
  			var options;
  			if(args.length == 3){
 	 			options = {
-	 				array: args[0],
 	 				clause: 'LEFT',
+	 				array: args[0],	 				
 	 				leftProperty: args[1],
 	 				rightProperty: args[2]	 				
 	 			};
 	 		}
 	 		else if(args.length == 4){
 	 			options = {
-	 				array: args[0],
-	 				clause: args[1].toUpperCase().trim(),
+	 				clause: args[0].toUpperCase().trim(),
+	 				array: args[1],	 				
 	 				leftProperty: args[2],
 	 				rightProperty: args[3]	 				
 	 			};
@@ -259,6 +259,7 @@ window.$ql = (function() {
  					left.$joined.forEach(function(right){
  						explodedArray.push({left: left, right: right});
  					});
+ 					left.$joined = undefined;
  				}
  			});
 
