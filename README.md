@@ -113,7 +113,7 @@ var canadians = $ql(peopleArray).where("address.country.code", "==", "CA").selec
 ```
 
 However, there are things to know.
-##### Omitting the property to match on just uses the full object when testing
+##### Omitting the property to match on just uses the full object when testing:
 ```
 var canadaString = $ql(countriesStringArray).where("==", "CA").select();
 ```
@@ -144,7 +144,44 @@ var canadians = $ql(peopleArray).where( person => person.country.code === 'CA' )
 ```
 
 ## Join
-TODO
+#### Semantic Left Join
+A left join will keep all the items in the origial array (i.e. the "left" side) regardless of whether they have a match or not.
+To do a left join you can supply 3 parameters (array to join, left property to join on, right property to join on). 
+```
+var joinedPeople = $ql(peopleArray).join(countriesArray, "address.country", "name").select();
+```
+
+The code above would check each person in the peopleArray, and if their property "address.country" (ex. "Canada") matched a property "name" in any of the countries in "countriesArray", the country would be "joined".
+
+#### Semantic Inner Join
+Like the left join, but we do not keep any items on the "left" side (i.e. the original array) if they have no matches. You must specify that this is an "inner" join using some form of "inner" as the first parameter.
+```
+var innerJoinedPeople = $ql(peopleArray).join("inner", countriesArray, "address.country", "name").select();
+```
+
+#### How To Use Joined Objects?
+Once you perform a join, each item in the original array will have a new property added: "$joined". This is an array holding all the joined objects. Running a select() on an $ql object that had a join performed will allow you to access the joined items.
+```
+var peopleWithCountries = $ql(peopleArray).join(countriesArray, "address.country", "name").select();
+var firstPersonsCountries = peopleWithCountries[0].$joined;
+
+// "firstPersonsCountries" is now the array of all the countries from the "countriesArray" that joined on the first person!
+```
+
+#### Exploding Join Results
+Normally, when you perform a join in SQL, you get one row per result. So, if a person is joined with - let's say - other people having the same last name, you might get multiple joins and mutliple rows. Can we do this with $QL? Yes!
+
+With multiple results for one "record" or item in the $ql array, the $joined property will just be an arrray with mutliple entries in it. You can call the explode() method after a join to "explode" the results into "one record" per match.
+```
+var explodedPeople = $ql(peopleArray).join(countriesArray, "address.country", "name").explode().select();
+
+// "explodedPeople" now looks like { left: [personObject], right: [countryObject] }
+```
+
+The objects returned by the select() will now return an array of objects having two poroperties: "left" and "right". Left is the item from the original / $ql array and right is a match from the joined array.
+
+Note that the left item's property $joined is set to undefined after exploding.
+
 
 # To Do?:
 
