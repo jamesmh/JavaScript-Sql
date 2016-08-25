@@ -1,0 +1,13 @@
+{
+  "name": "sqljavascript",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "2.6.0",
+    "gulp-order": "^1.1.1"
+  }
+}
