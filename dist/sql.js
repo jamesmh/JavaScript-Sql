@@ -106,7 +106,7 @@ $ql = (function() {
 						case '>=':
 							return $help.getObjectValue(obj) >= options.value;
 						case (propertyToUpper === 'LIKE' ? options.operator : false):
-						return $help.getObjectValue(obj).includes(options.value);
+						return $help.getObjectValue(obj).toUpperCase().includes(options.value.toUpperCase());
 						default:
 							throw "$ql: Invalid Operator '" + options.operator + "'.";
 					}
