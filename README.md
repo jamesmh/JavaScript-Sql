@@ -16,7 +16,9 @@ Probably "IE 9 and higher". ES5 functions like map and filter are being used int
 
 None. Just Plain-old JavaScript (ES5).
 
-# Methods
+# Table Of Contents
+### [Quick Start](#quick-start)
+### [Full Documentation](#how-to-use)
 ### [Select](#select-1)
 ### [OrderBy](#orderby-1)
 ### [Where](#where-1)
@@ -91,7 +93,7 @@ var explodedPeople = $ql(peopleArray).join(countriesArray, "address.country", "n
 // "explodedPeople" now looks like an array of { left: [personObject], right: [countryObject] }
 ```
 
-# How To Use
+# How To Use - Full Documentation
 
 ## Creating New $QL Object
 Creating a new $QL object is very similar to (as a familiar reference...) creating a new JQuery object. The only difference is you must supply a JavaScript array as the constructor parameter. 
