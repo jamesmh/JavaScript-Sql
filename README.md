@@ -72,7 +72,7 @@ var canadians = $ql(peopleArray).where("name.last", "LIKE", "Doe").select();
 #### Join
 Join just like SQL.
 ```
-// Left join array "countriesArray" to the "peopleArray" based on person property 'address.country' == country property 'name'.
+// Left join array "countriesArray" to the "peopleArray" based on person property "address.country" == country property "name".
 // Variable joinedPeople.$joined is an array holding all the joined matches.
 
 var joinedPeople = $ql(peopleArray).join("left", countriesArray, "address.country", "name").select();
