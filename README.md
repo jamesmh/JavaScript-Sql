@@ -34,10 +34,12 @@ var $people = $ql(arrayOfPeople);
 Select all objects in the $ql object and map to the entire object (no parameter) or a specific property (supply dot notation for property).
 ```
   //Select and map to prop. name.first
+  
   var firstNames = $ql(peopleArray).select('name.first');
 ```
 ```
   //Select entire array objects
+  
   var firstNames = $ql(peopleArray).select();
 ```
 
@@ -45,10 +47,12 @@ Select all objects in the $ql object and map to the entire object (no parameter)
 Sort items in an array using SQL like syntax. Easy to understand what is being sorted because of semantics.
 ```
 // Sort items using name.first property ascending.
+
 var people = $ql(peopleArray).orderBy("ASC", "name.first").select();
 ```
 ```
 // Sort items using name.first property descending.
+
 var people = $ql(peopleArray).orderBy("DESC", "name.first").select();
 ```
 
@@ -56,10 +60,12 @@ var people = $ql(peopleArray).orderBy("DESC", "name.first").select();
 Filter items in the array using easy to understand syntax and semantics.
 ```
 // Where property address.country.code is equal to "CA"
+
 var canadians = $ql(peopleArray).where("address.country.code", "==", "CA").select();
 ```
 ```
 // Include only last names that are "like" "Doe". Case insensitive.
+
 var canadians = $ql(peopleArray).where("name.last", "LIKE", "Doe").select();
 ```
 
@@ -68,10 +74,12 @@ Join just like SQL.
 ```
 // Left join array "countriesArray" to the "peopleArray" based on person property address.country == country property name.
 // Variable joinedPeople.$joined is an array holding all the joined matches.
+
 var joinedPeople = $ql(peopleArray).join("left", countriesArray, "address.country", "name").select();
 ```
 ```
 //Same as above, but we exlcude any people from the "peopleArray" that have no matches.
+
 var innerJoinedPeople = $ql(peopleArray).join("inner", countriesArray, "address.country", "name").select();
 ```
 
