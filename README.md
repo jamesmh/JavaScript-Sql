@@ -31,7 +31,7 @@ Supports plain array and Jquery objects (will convert to array using .toArray())
 var $people = $ql(arrayOfPeople);
 ```
 #### Select
-Select all objects in the $ql object and map to either the entire object (no parameter) or mapped to a specific property (supply dot notation for property).
+Select all objects in the $ql object and map to the entire object (no parameter) or a specific property (supply dot notation for property).
 ```
   //Select and map to prop. name.first
   var firstNames = $ql(peopleArray).select('name.first');
