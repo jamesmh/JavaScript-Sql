@@ -18,7 +18,7 @@ None. Just Plain-old JavaScript (ES5).
 
 # Table Of Contents
 ### [Quick Start](#quick-start)
-### [Full Documentation](#how-to-use)
+### [Full Documentation](#how-to-use---full-documentation)
 ### [Select](#select-1)
 ### [OrderBy](#orderby-1)
 ### [Where](#where-1)
