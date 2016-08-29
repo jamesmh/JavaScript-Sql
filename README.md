@@ -78,17 +78,17 @@ Join just like SQL.
 var joinedPeople = $ql(peopleArray).join("left", countriesArray, "address.country", "name").select();
 ```
 ```
-//Same as above, but we exlcude any people from the "peopleArray" that have no matches.
+//Same as above, but we exclude any people from the "peopleArray" that have no matches.
 
 var innerJoinedPeople = $ql(peopleArray).join("inner", countriesArray, "address.country", "name").select();
 ```
 
 #### Explode
-After a join, call explode() to explode the joined results just like a regular SQL statement would return.
+After a join, call explode() to explode the joined results - just like a regular SQL statement would return. This needs to be done explicitly for performance reasons and flexibility of the normal join.
 ```
 var explodedPeople = $ql(peopleArray).join(countriesArray, "address.country", "name").explode().select();
 
-// "explodedPeople" now looks like { left: [personObject], right: [countryObject] }
+// "explodedPeople" now looks like an array of { left: [personObject], right: [countryObject] }
 ```
 
 # How To Use
