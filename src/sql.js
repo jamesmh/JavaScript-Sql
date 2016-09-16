@@ -23,6 +23,7 @@ $ql = (function() {
 		}
 
 		this._array = array;
+		this._$sqltype = true;
 	};
 
 	/**

@@ -24,6 +24,15 @@
  	};
 
  	/**
+ 	 * Is the object supplied an $QL typed object?
+ 	 * @param  {Object}  obj 		Object to test
+ 	 * @return {Boolean}   			Is this object an $QL object?
+ 	 */
+ 	module.isSqlType = function(obj){
+ 		return typeof obj._$sqltype !== 'undefined';
+ 	};
+
+ 	/**
  	 * Common logic used throughout the $ql Js chainable methods to supply polymorphic behavior / arguments.
  	 * @param  {String} functionName            		Name of the function caller is executing
  	 * @param  {ArgumentList} args                   	Arguments supplied to the inital chainable method
@@ -31,12 +40,12 @@
  	 * @param  {Function} $qlVersionCallback 			The $QL version of the callback method to use when calling native method
  	 * @return {Object}                         		Result of chosen method
  	 */
- 	module.exec$qlFunction = function(args, nativeVersionCallback, $qlVersionCallback){
+ 	module.chooseAndExecCallbackFunction = function($sql, args, nativeVersionCallback, $qlVersionCallback){
 	 	if(module.isFunction(args[0])){
-			return nativeVersionCallback.call(this._array, args[0]);
+			return nativeVersionCallback.call($sql._array, args[0]);
 		}
 	 	else{
-	 		return nativeVersionCallback.call(this._array, $qlVersionCallback);
+	 		return nativeVersionCallback.call($sql._array, $qlVersionCallback);
 	 	}
  	};
 

@@ -62,6 +62,6 @@ $ql.fn.prototype.where = function() {
 				throw "$ql: Invalid Operator '" + options.operator + "'.";
 		}
 	};
-	this._array = $help.exec$qlFunction.call(this, args, Array.prototype.filter, $qlWhere);
+	this._array = $help.chooseAndExecCallbackFunction(this, args, Array.prototype.filter, $qlWhere);
 	return this;
 };

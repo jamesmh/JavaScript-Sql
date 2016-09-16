@@ -37,6 +37,7 @@ $ql = (function() {
 		}
 
 		this._array = array;
+		this._$sqltype = true;
 	};
 
 	/**
@@ -73,6 +74,15 @@ $ql = (function() {
  	};
 
  	/**
+ 	 * Is the object supplied an $QL typed object?
+ 	 * @param  {Object}  obj 		Object to test
+ 	 * @return {Boolean}   			Is this object an $QL object?
+ 	 */
+ 	module.isSqlType = function(obj){
+ 		return typeof obj._$sqltype !== 'undefined';
+ 	};
+
+ 	/**
  	 * Common logic used throughout the $ql Js chainable methods to supply polymorphic behavior / arguments.
  	 * @param  {String} functionName            		Name of the function caller is executing
  	 * @param  {ArgumentList} args                   	Arguments supplied to the inital chainable method
@@ -80,12 +90,12 @@ $ql = (function() {
  	 * @param  {Function} $qlVersionCallback 			The $QL version of the callback method to use when calling native method
  	 * @return {Object}                         		Result of chosen method
  	 */
- 	module.exec$qlFunction = function(args, nativeVersionCallback, $qlVersionCallback){
+ 	module.chooseAndExecCallbackFunction = function($sql, args, nativeVersionCallback, $qlVersionCallback){
 	 	if(module.isFunction(args[0])){
-			return nativeVersionCallback.call(this._array, args[0]);
+			return nativeVersionCallback.call($sql._array, args[0]);
 		}
 	 	else{
-	 		return nativeVersionCallback.call(this._array, $qlVersionCallback);
+	 		return nativeVersionCallback.call($sql._array, $qlVersionCallback);
 	 	}
  	};
 
@@ -163,6 +173,7 @@ $ql.fn.prototype.join = function() {
 	var $help = $ql.fn.prototype._helpers;
 	var args = arguments;
 	var options;
+	// 3 args assumes left join
 	if (args.length == 3) {
 		options = {
 			clause: 'LEFT',
@@ -170,7 +181,9 @@ $ql.fn.prototype.join = function() {
 			leftProperty: args[1],
 			rightProperty: args[2]
 		};
-	} else if (args.length == 4) {
+	} 
+	//4 args = caller specified the clause as arg[0]
+	else if (args.length == 4) {
 		options = {
 			clause: args[0].toUpperCase().trim(),
 			array: args[1],
@@ -181,7 +194,7 @@ $ql.fn.prototype.join = function() {
 		throw "$ql.join: Incorrect number of arguments...";
 	}
 
-	if (options.array instanceof $QL)
+	if ($help.isSqlType(options.array))
 		options.array = options.array._array;
 	else if (options.array.jquery)
 		options.array = options.array.toArray();
@@ -198,7 +211,7 @@ $ql.fn.prototype.join = function() {
 			left.$joined = rightMatches;
 		} else if (isInnerJoin) {
 			if (rightMatches.length === 0) {
-				left.$destroy = true;
+				left.$noMatches = true;
 			} else {
 				left.$joined = rightMatches;
 			}
@@ -208,7 +221,7 @@ $ql.fn.prototype.join = function() {
 	//If inner join, we remove all items that had no joins.
 	if (isInnerJoin) {
 		this._array = this._array.filter(function(item) {
-			return !item.$destroy;
+			return !item.$noMatches;
 		});
 	}
 
@@ -265,7 +278,7 @@ $ql.fn.prototype.orderBy = function() {
 		}
 	};
 
-	this._array = $help.exec$qlFunction.call(this, args, Array.prototype.sort, $qlOrderBy);
+	this._array = $help.chooseAndExecCallbackFunction(this, args, Array.prototype.sort, $qlOrderBy);
 	return this;
 };
 /**
@@ -284,7 +297,7 @@ $ql.fn.prototype.select = function() {
 		return $help.getObjectValue($help.getPropertyFromDotNotation(options.property, item));
 	};
 
-	return $help.exec$qlFunction.call(this, args, Array.prototype.map, $qlSelect);
+	return $help.chooseAndExecCallbackFunction(this, args, Array.prototype.map, $qlSelect);
 };
 /**
  * Like an SQL Where or JavaScript Filter method, this filters items in the supplied collection.
@@ -350,6 +363,6 @@ $ql.fn.prototype.where = function() {
 				throw "$ql: Invalid Operator '" + options.operator + "'.";
 		}
 	};
-	this._array = $help.exec$qlFunction.call(this, args, Array.prototype.filter, $qlWhere);
+	this._array = $help.chooseAndExecCallbackFunction(this, args, Array.prototype.filter, $qlWhere);
 	return this;
 };

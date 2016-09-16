@@ -49,6 +49,6 @@ $ql.fn.prototype.orderBy = function() {
 		}
 	};
 
-	this._array = $help.exec$qlFunction.call(this, args, Array.prototype.sort, $qlOrderBy);
+	this._array = $help.chooseAndExecCallbackFunction(this, args, Array.prototype.sort, $qlOrderBy);
 	return this;
 };

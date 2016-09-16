@@ -14,5 +14,5 @@ $ql.fn.prototype.select = function() {
 		return $help.getObjectValue($help.getPropertyFromDotNotation(options.property, item));
 	};
 
-	return $help.exec$qlFunction.call(this, args, Array.prototype.map, $qlSelect);
+	return $help.chooseAndExecCallbackFunction(this, args, Array.prototype.map, $qlSelect);
 };

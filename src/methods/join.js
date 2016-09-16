@@ -6,6 +6,7 @@ $ql.fn.prototype.join = function() {
 	var $help = $ql.fn.prototype._helpers;
 	var args = arguments;
 	var options;
+	// 3 args assumes left join
 	if (args.length == 3) {
 		options = {
 			clause: 'LEFT',
@@ -13,7 +14,9 @@ $ql.fn.prototype.join = function() {
 			leftProperty: args[1],
 			rightProperty: args[2]
 		};
-	} else if (args.length == 4) {
+	} 
+	//4 args = caller specified the clause as arg[0]
+	else if (args.length == 4) {
 		options = {
 			clause: args[0].toUpperCase().trim(),
 			array: args[1],
@@ -24,7 +27,7 @@ $ql.fn.prototype.join = function() {
 		throw "$ql.join: Incorrect number of arguments...";
 	}
 
-	if (options.array instanceof $QL)
+	if ($help.isSqlType(options.array))
 		options.array = options.array._array;
 	else if (options.array.jquery)
 		options.array = options.array.toArray();
@@ -41,7 +44,7 @@ $ql.fn.prototype.join = function() {
 			left.$joined = rightMatches;
 		} else if (isInnerJoin) {
 			if (rightMatches.length === 0) {
-				left.$destroy = true;
+				left.$noMatches = true;
 			} else {
 				left.$joined = rightMatches;
 			}
@@ -51,7 +54,7 @@ $ql.fn.prototype.join = function() {
 	//If inner join, we remove all items that had no joins.
 	if (isInnerJoin) {
 		this._array = this._array.filter(function(item) {
-			return !item.$destroy;
+			return !item.$noMatches;
 		});
 	}
 
