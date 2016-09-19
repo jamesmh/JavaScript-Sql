@@ -255,26 +255,3 @@ var explodedPeople = $ql(peopleArray).join(countriesArray, "address.country", "n
 The objects returned by the select() will now return an array of objects having two properties: "left" and "right". Left is the item from the original / $QL array and right is a match from the joined array.
 
 Note: the left item's property $joined is set to undefined after exploding.
-
-
-# To Do?:
-
-Done:
-+ Select
-+ Where
-+ OrderBy
-+ Join (plus explode())
-
-To Do: 
-+ Exists
-+ Distinct
-+ Group BY
-+ Having
-+ Union
-+ Minus
-+ Except
-+ Count
-+ Sum
-+ Min
-+ Max
-+ Avg
